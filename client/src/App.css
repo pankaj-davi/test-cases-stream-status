@@ -1,0 +1,67 @@
+.App-header {
+  background-color: #343a40;
+  padding: 20px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0px 0px 10px rgba(59, 61, 73, 0.3);
+  position: fixed;
+  top:0;
+  width: 100%;
+  z-index: 2;
+}
+
+main{
+  padding:30px;
+  margin-top: 75px;
+}
+
+.summary-section {
+  background-color: #fff;
+  padding:20px;
+  border: 1px solid #ddd;
+  margin-bottom: 20px;
+  border-radius: 8px;
+}
+.summary-section-row{
+    display: flex;
+    flex-direction: row;
+}
+.summary-section-row-status{
+    display: flex;
+    align-items: start;
+    border-radius: 8px;
+    padding:10px
+}
+.summary-section-row-status-items{
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  font-weight: 500;
+  padding: 10px;
+}
+
+.summary-section .scenario-summary {
+  margin-top: 10px;
+}
+.summary-section .scenario-summary .ant-typography{
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.scenario-summary .ant-col {
+  text-align: center;
+}
+
+.ant-tag {
+  font-weight: bold;
+}
+
+.status-column {
+  text-align: center;
+}
+
+.ant-table-cell {
+  padding: 16px;
+}
