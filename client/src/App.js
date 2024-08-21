@@ -25,7 +25,7 @@ function App() {
 
   useEffect(() => {
     const endpoint = process.env.REACT_APP_API_KEY;
-    const socket = socketIOClient('https://test-cases-stream-status.onrender.com');
+    const socket = socketIOClient(endpoint);
 
     const handleData = (data) => {
       setTestCases(data.testCases);

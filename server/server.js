@@ -16,7 +16,22 @@ const io = socketIo(server, {
   }
 });
 
+
+
 app.use(cors());
+
+// Serve static files from the React app
+app.use(express.static(path.join(__dirname, '../client/build')));
+
+// Example API route
+app.get('/api/hello', (req, res) => {
+  res.json({ message: 'Hello from server!' });
+});
+
+// Catch-all handler to serve React app
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
+});
 
 // Load and parse the schemas JSON file
 const schemasPath = path.join(__dirname, 'schemas.json');
