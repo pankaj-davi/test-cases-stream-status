@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useMemo } from 'react';
-import { Avatar, Table, Tag, Row, Col, Typography } from 'antd';
+import { Avatar, Table, Tag, Row, Col, Typography, Spin , notification } from 'antd';
 import socketIOClient from 'socket.io-client';
 import { UserOutlined } from '@ant-design/icons';
 import 'antd/dist/reset.css';
@@ -22,6 +22,7 @@ function App() {
     total: 0,
   });
   const [columns, setColumns] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const endpoint = process.env.REACT_APP_API_KEY;
@@ -31,8 +32,17 @@ function App() {
       setTestCases(data.testCases);
       setScenarioSummary(calculateSummary(data.testCases));
       if (data.schema) setColumns(generateColumnsFromSchema(data.schema));
-    };
+      setLoading(false); 
 
+         // Show notification when new data arrives
+      notification.open({
+        message: `${JSON.stringify(data.testCases[data.testCases.length -1])}`,
+        placement : "topLeft" ,
+        description: `New data has been added with ${data.testCases.length} test cases.`,
+      });
+    };
+    
+    setLoading(true);
     socket.on('FromAPI', handleData);
 
     return () => socket.disconnect();
@@ -61,7 +71,7 @@ function App() {
         key,
         render: (text) => {
           if (key === 'status') {
-            return <Tag color={statusColors[text?.toLowerCase()] || 'default'}>{text}</Tag>;
+            return <Tag className={'tag-style'} color={statusColors[text?.toLowerCase()] || 'default'}>{text}</Tag>;
           }
           return isDateColumn ? new Date(text).toLocaleString() : Array.isArray(text) ? text.join(', ') : text;
         },
@@ -102,6 +112,7 @@ function App() {
           </Row>
         </div>
         <Table
+          loading={loading && <Spin title="Loading....." size="small" />}
           bordered
           virtual
           className="ant-table-wrapper"

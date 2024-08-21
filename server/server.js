@@ -63,7 +63,7 @@ const loadSchemas = () => {
     // Check if the model already exists before creating it
     models[modelName] = mongoose.models[modelName] || mongoose.model(modelName, mongooseSchema);
   }
-  console.log('Schemas loaded');
+  // console.log('Schemas loaded');
 };
 
 // Initial schema loading
