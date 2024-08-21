@@ -1,0 +1,20 @@
+{
+  "TestCase": {
+    "scenario id": "String",
+    "scenario description":"String",
+    "status": {
+      "type": "String",
+      "enum": ["pending", "skipped", "passed", "failed"],
+      "default": "pending"
+    },
+    "comments": ["String"],
+    "createdAt": {
+      "type": "Date",
+      "default": "Date.now"
+    },
+    "updatedAt": {
+      "type": "Date",
+      "default": "Date.now"
+    }
+  }
+}
